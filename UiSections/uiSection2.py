@@ -8,7 +8,7 @@ class UiSect2(ttk.Frame):
 
         # Create a Grid Layout that contains 2 rows and 1 column.
         self.grid_rowconfigure(0, weight=1)
-        self.grid_rowconfigure(1, weight=6)
+        self.grid_rowconfigure(1, weight=111)
 
         # Create a label with padding for top frame of section 2
         lbl_uut = ttk.Label(self, text="Unit Under Test", font=font.Font(size=10, weight="bold"), foreground="#333333")
