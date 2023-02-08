@@ -7,41 +7,83 @@ class UiSect2(ctk.CTkFrame):
     def __init__(self, master=None, **kwargs):
         ctk.CTkFrame.__init__(self, master, **kwargs)
 
-        # Create a Grid Layout that contains 2 rows and 1 column (1st title, 2nd --> 3 frames ).
-        self.grid_rowconfigure(0, weight=1)
-        self.grid_rowconfigure(1, weight=111)
+        # 2) Create a Grid Layout that contains 2 rows and 1 column (1st title, 2nd --> 3 frames ).
+        self.grid_rowconfigure(0, weight=1)     # 2.0) Title
+        self.grid_rowconfigure(1, weight=111)   # 2.1) 3 frames (Laser Brand radio buttons, Connection, and Details)
 
-        # Create a label for top frame of section 2
+        # 2.0) Create a label for top frame of section 2 header and place it in the 1st row of the grid layout
         self.lbl_uut = ctk.CTkLabel(self, text="Unit Under Test")
         self.lbl_uut.grid(row=0, column=0, sticky="nsew", padx=(10, 0))
 
-        # Create a frame for the 2nd row of section 2, and set the grid layout to 1 row and 3 columns
-        self.frame_uut = ctk.CTkFrame(self)
+        # 2.1) Create a frame for holding 3 frames -
+        # 2.1.0) Laser Brand radio buttons,
+        # 2.1.1) Laser Controller Connection, and Details),
+        # 2.1.2) Details and set grid layout to 1 row and 3 columns
+        self.frame_uut = ctk.CTkFrame(self)                     # 2.1)
+        # Place the frame in the 2nd row of the grid layout
         self.frame_uut.grid(row=1, column=0, sticky="nsew")
+
         self.frame_uut.grid_rowconfigure(0, weight=1)
         self.frame_uut.grid_columnconfigure(0, weight=1)
         self.frame_uut.grid_columnconfigure(1, weight=1)
         self.frame_uut.grid_columnconfigure(2, weight=1)
+
+        # 2.1.0) Create frame for the radio button group
+        self.frame_radio_group = ctk.CTkFrame(master=self.frame_uut)
+        # 2.1.0) Place the frame in the 1st column of the grid layout
+        self.frame_radio_group.grid(row=0, column=0, padx=(1, 1), pady=(1, 1), sticky="new")
+        self.frame_radio_group.configure(height=10, width=20)
+
+        # 2.1.0) Create grid layout for the radio button group frame with 4 rows and 1 column
+        self.frame_radio_group.grid_rowconfigure(0, weight=1)
+        self.frame_radio_group.grid_rowconfigure(1, weight=1)
+        self.frame_radio_group.grid_rowconfigure(2, weight=1)
+        self.frame_radio_group.grid_rowconfigure(3, weight=1)
+        self.frame_radio_group.grid_columnconfigure(0, weight=1)
+
+        self.radio_var = tk.IntVar(value=0)     # Variable to hold the value of the selected radio button
+
+        # Create a label for the radio button group
+        self.label_radio_group = ctk.CTkLabel(master=self.frame_radio_group, text="Laser Brand:")
+        self.label_radio_group.grid(row=0, column=0, columnspan=1, padx=10, pady=2, sticky="n")
+
+        # Create and place the radio buttons in the radio button group frame
+        self.radio_button_1 = ctk.CTkRadioButton(master=self.frame_radio_group, variable=self.radio_var, value=0, text="Toptica 405")
+        self.radio_button_1.grid(row=1, column=0, pady=2, padx=20,  sticky="n")
+
+        self.radio_button_2 = ctk.CTkRadioButton(master=self.frame_radio_group, variable=self.radio_var, value=1, text="Cobolt 457")
+        self.radio_button_2.grid(row=2, column=0, pady=2, padx=20, sticky="n")
+
+        self.radio_button_3 = ctk.CTkRadioButton(master=self.frame_radio_group, variable=self.radio_var, value=2, text="Cobolt 532")
+        self.radio_button_3.grid(row=3, column=0, pady=2, padx=20, sticky="n")
+
+
+
+
+
+
+
+
 
         # # Create radiobutton frame with grid layout that contains 4 rows and 1 column and place it in the 1st column
         # self.radiobutton_frame = ctk.CTkFrame(self.frame_uut)
         # self.radiobutton_frame.grid(row=0, column=1, padx=(20, 20), pady=(20, 0), sticky="nsew")
         #
         # # Variable to hold the value of the selected radio button
-        self.radio_var = tk.IntVar(value=0)
+
+        # Create frame for the radio button group
+        # self.frame_radio_group = ctk.CTkFrame(master=self.frame_uut)
+        # self.frame_radio_group.grid(row=0, column=0, padx=(20, 20), pady=(20, 0), sticky="nsew")
+
+
 
         # Create a label for the radio button group
-        self.label_radio_group = ctk.CTkLabel(master=self.frame_uut, text="Laser Brand:")
-        self.label_radio_group.grid(row=0, column=0, columnspan=1, padx=10, pady=10, sticky="n")
+        # self.label_radio_group = ctk.CTkLabel(master=self.frame_uut, text="Laser Brand:")
+        # self.label_radio_group.grid(row=0, column=0, columnspan=1, padx=10, pady=10, sticky="n")
 
-        self.radio_button_1 = ctk.CTkRadioButton(master=self.frame_uut, variable=self.radio_var, value=0, text="Toptica 405")
-        self.radio_button_1.grid(row=1, column=0, pady=10, padx=20, sticky="n")
 
-        self.radio_button_2 = ctk.CTkRadioButton(master=self.frame_uut, variable=self.radio_var, value=1, text="Cobolt 457")
-        self.radio_button_2.grid(row=2, column=0, pady=10, padx=20, sticky="n")
 
-        self.radio_button_3 = ctk.CTkRadioButton(master=self.frame_uut, variable=self.radio_var, value=2, text="Cobolt 532")
-        self.radio_button_3.grid(row=3, column=0, pady=10, padx=20, sticky="n")
+
         #
         # # create radiobutton frame
         # self.radiobutton_frame = ctk.CTkFrame(self)
