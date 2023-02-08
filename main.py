@@ -1,12 +1,16 @@
 import tkinter
 import tkinter.ttk as ttk
+import customtkinter as ctk
 
 from UiSections.uiSection1 import UiSect1
 from UiSections.uiSection2 import UiSect2
 
+ctk.set_appearance_mode("System")  # Modes: system (default), light, dark
+ctk.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
 
 # Create the main window
-root = tkinter.Tk()
+root = ctk.CTk()
+# root = tkinter.Tk()
 # Set the title of the main window
 root.title("Laser Testing Utility - LTU")
 
@@ -16,7 +20,8 @@ root.maxsize(960, 800)
 root.minsize(700, 500)
 
 # Create main app gui frame, set size to 960x800
-frm = ttk.Frame(root, height=800, width=960, padding="3 3 3 3")
+# frm = ttk.Frame(root, height=800, width=960, padding="3 3 3 3")
+frm = ctk.CTkFrame(master=root)
 frm.pack(fill="both", expand=True)
 
 # Create a Grid Layout that contains 4 rows and 1 column.
@@ -29,12 +34,12 @@ frm.grid_columnconfigure(0, weight=1)
 # frm.rowconfigure(0, minsize=20)
 
 # Create a ttk style object for the frame
-frame_style = ttk.Style()
-frame_style.theme_use("clam")
-frame_style.configure("TFrame", background="lightgray")
+# frame_style = ttk.Style()
+# frame_style.theme_use("clam")
+# frame_style.configure("TFrame", background="lightgray")
 
 # Create GUI section 1
-sect1 = UiSect1(frm, sw_name="Laser Test Utility - LTU", sw_ver="Ver: 0.0.0", spec_ver="Spec: 0.0.0")
+sect1 = UiSect1(master=frm, sw_name="Laser Test Utility - LTU", sw_ver="Ver: 0.0.0", spec_ver="Spec: 0.0.0")
 sect1.grid(row=0, column=0, sticky="nsew")
 
 # Create GUI section 2
