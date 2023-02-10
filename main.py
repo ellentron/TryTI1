@@ -1,5 +1,4 @@
 import tkinter
-import tkinter.ttk as ttk
 import customtkinter as ctk
 
 from UiSections.uiSection1 import UiSect1
@@ -10,12 +9,12 @@ ctk.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
 
 # Create the main window
 root = ctk.CTk()
-# root = tkinter.Tk()
+
 # Set the title of the main window
 root.title("Laser Testing Utility - LTU")
 
 # Set the size of the main window
-root.geometry("960x800")
+# root.geometry("960x800")
 
 # Create grid layout for the main window
 root.grid_rowconfigure(0, weight=1)
@@ -24,9 +23,11 @@ root.grid_columnconfigure(0, weight=1)
 # Create main app gui frame, set size to 960x800
 # frm = ttk.Frame(root, height=800, width=960, padding="3 3 3 3")
 
-frm = ctk.CTkFrame(master=root)
-# frm.grid(row=0, column=0, sticky="nsew")
-# frm.pack(fill="both", expand=True)
+frm = ctk.CTkFrame(master=root , height=800, width=960)
+# set the size of the frame
+frm.configure("960x800")
+# frm.grid(row=0, column=0, sticky="ew")
+frm.pack()
 frm.pack()
 
 # Create a Grid Layout that contains 4 rows and 1 column.
@@ -45,7 +46,7 @@ frm.grid_columnconfigure(0, weight=1)
 
 # Create GUI section 1
 sect1 = UiSect1(master=frm, sw_name="Laser Test Utility - LTU", sw_ver="Ver: 0.0.0", spec_ver="Spec: 0.0.0")
-sect1.grid(row=0, column=0, sticky="n")
+sect1.grid(row=0, column=0, sticky="new")
 
 # Create GUI section 2
 sect2 = UiSect2(master=frm)
