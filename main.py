@@ -28,7 +28,6 @@ frm = ctk.CTkFrame(master=root , height=800, width=960)
 frm.configure("960x800")
 # frm.grid(row=0, column=0, sticky="ew")
 frm.pack()
-frm.pack()
 
 # Create a Grid Layout that contains 4 rows and 1 column.
 frm.grid_rowconfigure(0, weight=1)

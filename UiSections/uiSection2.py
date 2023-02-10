@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, font
+# from tkinter import ttk, font
 import customtkinter as ctk
 from UiSections.uiLed import LED
 
@@ -83,24 +83,28 @@ class UiSect2(ctk.CTkFrame):
         self.connection_group.grid_columnconfigure(3, weight=1)
 
         # 2.1.1.0) Create a label for the "Laser Controller Connection" frame
-        self.label_connection_group = ctk.CTkLabel(master=self.connection_group, text="Laser Controller Connection", font=group_label_font)
+        self.label_connection_group = ctk.CTkLabel(master=self.connection_group, text="Laser Controller Connection",
+                                                   font=group_label_font)
         self.label_connection_group.grid(row=0, column=0, columnspan=4, padx=10, pady=0, sticky="n")
 
         # 2.1.1.1.0) Create and place the "IP Address" label and entry widget in the "Laser Controller Connection" frame
         self.label_ip = ctk.CTkLabel(master=self.connection_group, text="IP Address:", font=bold_font)
-        self.label_ip.grid(row=1, column=0, padx=10, pady=0, sticky="n")
+        self.label_ip.grid(row=1, column=0, padx=[10, 0], pady=0, sticky="n")
 
-        # 2.1.1.1.1) Create and place the "IP Address" entry widget in the "Laser Controller Connection" frame
-        self.entry_ip = ctk.CTkEntry(master=self.connection_group, width=120)
-        self.entry_ip.grid(row=1, column=1, padx=10, pady=0, sticky="n")
+        # 2.1.1.1.1) Create and place the "IP Address" combobox widget in the "Laser Controller Connection" frame
+        self.combobox_ip = ctk.CTkComboBox(master=self.connection_group, width=140, justify="right",
+                                           values=["10.0.30.1", "10.0.30.20", "10.0.30.80"])
+
+
+        self.combobox_ip.grid(row=1, column=1, padx=[5, 5], pady=0, sticky="ne")
 
         # 2.1.1.1.2) Create and place the "Connect" button in the "Laser Controller Connection" frame
-        self.button_connect = ctk.CTkButton(master=self.connection_group, text="Connect")
-        self.button_connect.grid(row=1, column=2, padx=10, pady=[0, 10], sticky="n")
+        self.button_connect = ctk.CTkButton(master=self.connection_group, text="Connect", width=90)
+        self.button_connect.grid(row=1, column=2, padx=[0, 5], pady=[0, 10], sticky="n")
 
         # 2.1.1.1.3) Create and place the "is_connected" Led in the "Laser Controller Connection" frame
-        led = LED(self.connection_group, size=18, color="green")
-        led.grid(row=1, column=3, padx=[0, 10], pady=[1, 9], sticky="n")
+        led = LED(self.connection_group, size=16, color="green")
+        led.grid(row=1, column=3, padx=[0, 10], pady=[2, 8], sticky="n")
         led.on()
 
         # ===================== 2.1.1) Details=========================================================================
@@ -153,8 +157,3 @@ class UiSect2(ctk.CTkFrame):
         # 2.1.2.2.3) Create and place the "Laser Emitter FW Ver" value (label widget) in the "Details" frame
         self.label_laser_fw_value = ctk.CTkLabel(master=self.details_group, text="1.0.0")
         self.label_laser_fw_value.grid(row=2, column=3, padx=10, pady=0, sticky="ne")
-
-
-
-
-
