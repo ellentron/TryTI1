@@ -4,6 +4,8 @@ import customtkinter as ctk
 from UiSections.uiSection1 import UiSect1
 from UiSections.uiSection2 import UiSect2
 
+print("Starting...")
+
 ctk.set_appearance_mode("System")  # Modes: system (default), light, dark
 ctk.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
 
