@@ -1,10 +1,17 @@
 import tkinter
 import customtkinter as ctk
+import uiLogger
+
+# import UiLog
+
+
+
 
 from UiSections.uiSection1 import UiSect1
 from UiSections.uiSection2 import UiSect2
 
 print("Starting...")
+
 
 ctk.set_appearance_mode("System")  # Modes: system (default), light, dark
 ctk.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
@@ -55,25 +62,38 @@ sect2.grid(row=1, column=0, sticky="nsew")
 # sect2.grid(row=1, column=0, sticky="n")
 
 sect3 = tkinter.LabelFrame(frm, text="", padx=20, pady=20)
-sect4 = tkinter.LabelFrame(frm, text="", padx=20, pady=20)
+
+#sect4 = tkinter.LabelFrame(frm, text="", padx=20, pady=20)
 
 # Add the frames to the grid layout
 
 
 sect3.grid(row=2, column=0, sticky="nsew")
-sect4.grid(row=3, column=0, sticky="nsew")
-
-
-
 lbl3 = tkinter.Label(sect3, text="Section 3")
 lbl3.pack()
 btn3 = tkinter.Button(sect3, text="Button 3")
 btn3.pack()
 
-lbl4 = tkinter.Label(sect4, text="Section 4")
-lbl4.pack()
-btn4 = tkinter.Button(sect4, text="Button 4")
-btn4.pack()
+ui_log = uiLogger.UiLog(frm)
+ui_logger = uiLogger.UiLogger(ui_log.text)
+logger = ui_logger.logger
+
+sect4 = uiLogger.UiLog(master=frm)
+sect4.grid(row=3, column=0, sticky="nsew")
+
+
+
+
+logger.debug("Debug message")
+logger.info("Info message")
+logger.warning("Warning message")
+logger.error("Error message")
+
+#
+# lbl4 = tkinter.Label(sect4, text="Section 4")
+# lbl4.pack()
+# btn4 = tkinter.Button(sect4, text="Button 4")
+# btn4.pack()
 
 # Display the window
 root.mainloop()
