@@ -32,8 +32,8 @@ class UiSect2(ctk.CTkFrame):
             self.combobox_ip.set(self.connection_list[0])
             self.combobox_ip.update_idletasks()
 
-        self._border_width = 2
-        self._border_color = "white"
+        # self._border_width = 2
+        # self._border_color = "white"
 
         # Create bold font
         bold_font = ctk.CTkFont(size=12, weight="bold")
@@ -53,7 +53,7 @@ class UiSect2(ctk.CTkFrame):
         # 2.1.2) Details and set grid layout to 1 row and 3 columns
         self.frame_uut = ctk.CTkFrame(self)                     # 2.1)
         # Place the frame in the 2nd row of the grid layout
-        self.frame_uut.grid(row=1, column=0, padx=(1, 1), pady=(1, 1), sticky="nsew")
+        self.frame_uut.grid(row=1, column=0, padx=(5, 5), pady=(5, 5), sticky="nsew")
 
         self.frame_uut.grid_rowconfigure(0, weight=1)
         self.frame_uut.grid_columnconfigure(0, weight=1)
@@ -64,7 +64,7 @@ class UiSect2(ctk.CTkFrame):
         # 2.1.0) Create frame for the radio buttons group
         self.frame_radio_group = ctk.CTkFrame(master=self.frame_uut)
         # 2.1.0) Place the frame in the 1st column of the grid layout
-        self.frame_radio_group.grid(row=0, column=0, padx=(1, 1), pady=(1, 1), sticky="new")
+        self.frame_radio_group.grid(row=0, column=0, padx=(5, 5), pady=(5, 5), sticky="new")
 
         # 2.1.0) Create grid layout for the radio button group frame with 4 rows and 1 column
         self.frame_radio_group.grid_rowconfigure(0, weight=1)
@@ -72,8 +72,6 @@ class UiSect2(ctk.CTkFrame):
         self.frame_radio_group.grid_rowconfigure(2, weight=1)
         self.frame_radio_group.grid_rowconfigure(3, weight=1)
         self.frame_radio_group.grid_columnconfigure(0, weight=1)
-
-
 
         # Create a label for the radio button group
         self.label_radio_group = ctk.CTkLabel(master=self.frame_radio_group, text="Laser Brand", font=group_label_font)
@@ -96,7 +94,7 @@ class UiSect2(ctk.CTkFrame):
         # 2.1.1) Create Frame container for "Laser Controller Connection" widgets
         self.connection_group = ctk.CTkFrame(master=self.frame_uut)
         # 2.1.1) Place the frame in the 2nd column of the grid layout
-        self.connection_group.grid(row=0, column=1, padx=(1, 1), pady=(1, 1), sticky="nsew")
+        self.connection_group.grid(row=0, column=1, padx=(0, 0), pady=(5, 5), sticky="nsew")
 
         # 2.1.1) Create grid layout for the "Laser Controller Connection" frame with 2 rows and 4 columns
         self.connection_group.grid_rowconfigure(0, weight=1)
@@ -134,7 +132,7 @@ class UiSect2(ctk.CTkFrame):
         # 2.1.2) Create Frame container for "Details" widgets
         self.details_group = ctk.CTkFrame(master=self.frame_uut)
         # 2.1.2) Place the frame in the 3rd column of the grid layout
-        self.details_group.grid(row=0, column=2, padx=(1, 2), pady=(1, 1), sticky="nsew")
+        self.details_group.grid(row=0, column=2, padx=(5, 5), pady=(5, 5), sticky="nsew")
 
         # 2.1.2) Create grid layout for the "Details" frame with 3 rows and 4 columns
         self.details_group.grid_rowconfigure(0, weight=1)

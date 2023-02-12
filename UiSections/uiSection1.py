@@ -18,7 +18,7 @@ class UiSect1(ctk.CTkFrame):
         self.grid_columnconfigure(2, weight=1)
 
         # Set sw_name Label font to 14pt bold, and padding to 3px
-        self.sw_name = ctk.CTkLabel(self, text=sw_name, font=bold_font)
+        self.sw_name = ctk.CTkLabel(self, text=sw_name, font=bold_font, text_color="gray")
         self.sw_name.grid(row=0, column=0, sticky="nsew", padx=(350, 0), pady=(10, 10))
 
         self.sw_ver = ctk.CTkLabel(self, text=sw_ver)
