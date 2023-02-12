@@ -45,7 +45,7 @@ class UiSect2(ctk.CTkFrame):
 
         # 2.0) Create a label for top frame of section 2 header and place it in the 1st row of the grid layout
         self.lbl_uut = ctk.CTkLabel(self, text="Unit Under Test", font=ctk.CTkFont(size=16, weight="bold"))
-        self.lbl_uut.grid(row=0, column=0, sticky="nsew", padx=(1, 1), pady=(1, 1))
+        self.lbl_uut.grid(row=0, column=0, sticky="nsw", padx=(15, 0), pady=(1, 1))
 
         # 2.1) Create a frame for holding 3 frames -
         # 2.1.0) Laser Brand radio buttons,

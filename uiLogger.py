@@ -32,9 +32,9 @@ class UiLog(ctk.CTkFrame):
 
         # Create a CTkLabel widget to display "log" heading and place it in the first row
         self.lbl_log_heading = ctk.CTkLabel(self, text="Log", font=ctk.CTkFont(size=16, weight="bold"))
-        self.lbl_log_heading.grid(row=0, column=0, sticky="new", padx=(10, 10), pady=(10, 10))
+        self.lbl_log_heading.grid(row=0, column=0, sticky="nw", padx=(15, 0))
 
         # Create a CTkTextBox widget to display log messages and place it in the second row
         self.text = ctk.CTkTextbox(self, height=200, width=50)
-        self.text.grid(row=1, column=0, sticky="nsew", padx=(10, 10), pady=(10, 10))
+        self.text.grid(row=1, column=0, sticky="nsew", padx=(10, 10) , pady=(0, 10))
         self.ui_logger = UiLogger(self.text)
