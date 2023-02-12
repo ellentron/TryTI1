@@ -67,10 +67,10 @@ class UiSect2(ctk.CTkFrame):
         self.frame_radio_group.grid(row=0, column=0, padx=(5, 5), pady=(5, 5), sticky="new")
 
         # 2.1.0) Create grid layout for the radio button group frame with 4 rows and 1 column
-        self.frame_radio_group.grid_rowconfigure(0, weight=1)
-        self.frame_radio_group.grid_rowconfigure(1, weight=1)
-        self.frame_radio_group.grid_rowconfigure(2, weight=1)
-        self.frame_radio_group.grid_rowconfigure(3, weight=1)
+        self.frame_radio_group.grid_rowconfigure((0, 1, 2, 3), weight=1)
+        # self.frame_radio_group.grid_rowconfigure(1, weight=1)
+        # self.frame_radio_group.grid_rowconfigure(2, weight=1)
+        # self.frame_radio_group.grid_rowconfigure(3, weight=1)
         self.frame_radio_group.grid_columnconfigure(0, weight=1)
 
         # Create a label for the radio button group
@@ -99,10 +99,10 @@ class UiSect2(ctk.CTkFrame):
         # 2.1.1) Create grid layout for the "Laser Controller Connection" frame with 2 rows and 4 columns
         self.connection_group.grid_rowconfigure(0, weight=1)
         self.connection_group.grid_rowconfigure(1, weight=1)
-        self.connection_group.grid_columnconfigure(0, weight=1)
-        self.connection_group.grid_columnconfigure(1, weight=1)
-        self.connection_group.grid_columnconfigure(2, weight=1)
-        self.connection_group.grid_columnconfigure(3, weight=1)
+        self.connection_group.grid_columnconfigure((0, 1, 2, 3), weight=1)
+        # self.connection_group.grid_columnconfigure(1, weight=1)
+        # self.connection_group.grid_columnconfigure(2, weight=1)
+        # self.connection_group.grid_columnconfigure(3, weight=1)
 
         # 2.1.1.0) Create a label for the "Laser Controller Connection" frame
         self.label_connection_group = ctk.CTkLabel(master=self.connection_group, text="Laser Controller Connection",
@@ -114,8 +114,13 @@ class UiSect2(ctk.CTkFrame):
         self.label_ip.grid(row=1, column=0, padx=[10, 0], pady=0, sticky="n")
 
         # 2.1.1.1.1) Create and place the "IP Address" combobox widget in the "Laser Controller Connection" frame
-        self.combobox_ip = ctk.CTkComboBox(master=self.connection_group, width=140, justify="right",
-                                           values=self.connection_list)
+        # if self.connection_list equals to self.ip_list then select_list_justify_dir = "right", else "left"
+        if self.connection_list == self.ip_list:
+            select_list_justify_dir = "right"
+        else:
+            select_list_justify_dir = "left"
+
+        self.combobox_ip = ctk.CTkComboBox(master=self.connection_group, width=140, justify=select_list_justify_dir, values=self.connection_list)
 
         self.combobox_ip.grid(row=1, column=1, padx=[5, 5], pady=0, sticky="ne")
 
@@ -135,13 +140,13 @@ class UiSect2(ctk.CTkFrame):
         self.details_group.grid(row=0, column=2, padx=(5, 5), pady=(5, 5), sticky="nsew")
 
         # 2.1.2) Create grid layout for the "Details" frame with 3 rows and 4 columns
-        self.details_group.grid_rowconfigure(0, weight=1)
-        self.details_group.grid_rowconfigure(1, weight=1)
-        self.details_group.grid_rowconfigure(2, weight=1)
-        self.details_group.grid_columnconfigure(0, weight=1)
-        self.details_group.grid_columnconfigure(1, weight=1)
-        self.details_group.grid_columnconfigure(2, weight=1)
-        self.details_group.grid_columnconfigure(3, weight=1)
+        self.details_group.grid_rowconfigure((0, 1, 2), weight=1)
+        # self.details_group.grid_rowconfigure(1, weight=1)
+        # self.details_group.grid_rowconfigure(2, weight=1)
+        self.details_group.grid_columnconfigure((0, 1, 2, 3), weight=1)
+        # self.details_group.grid_columnconfigure(1, weight=1)
+        # self.details_group.grid_columnconfigure(2, weight=1)
+        # self.details_group.grid_columnconfigure(3, weight=1)
 
         # 2.1.2.0) Create a label for the "Details" frame
         self.label_details_group = ctk.CTkLabel(master=self.details_group, text="Details", font=group_label_font)
