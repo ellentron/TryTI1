@@ -1,6 +1,7 @@
 import tkinter
 import customtkinter as ctk
 import uiLogger
+import os
 
 # import UiLog
 
@@ -11,13 +12,15 @@ from UiSections.uiSection3 import UiSect3
 print("Starting...")
 
 ctk.set_appearance_mode("System")  # Modes: system (default), light, dark
-ctk.set_default_color_theme("blue")  # Themes: blue (default), dark-blue, green
+ctk.set_default_color_theme("dark-blue")  # Themes: blue (default), dark-blue, green
 
 # Create the main window
 root = ctk.CTk()
-
+root._windows_set_titlebar_icon
 # Set the title of the main window
 root.title("Laser Testing Utility - LTU")
+# Set icon of the main window
+root.iconbitmap("images/NVMI.ico")
 
 # Set the size of the main window
 # root.geometry("960x800")

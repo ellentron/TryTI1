@@ -8,24 +8,33 @@ class UiSect2(ctk.CTkFrame):
     def __init__(self, master=None, **kwargs):
         ctk.CTkFrame.__init__(self, master, **kwargs)
 
-        self.radio_var = tk.IntVar(value=0)     # Variable to hold the value of the selected radio button
+        self.radio_var = tk.IntVar(value=0)  # Variable to hold the value of the selected radio button
 
         self.ip_list = ["10.0.30.1", "10.0.30.20", "10.0.30.80"]
         self.com_list = ["COM3", "COM8", "COM12"]
 
         if self.radio_var.get() == 0:
             self.connection_list = self.ip_list
+            self.select_list_justify_dir = "right"
         else:
             self.connection_list = self.com_list
+            self.select_list_justify_dir = "left"
 
         def radiobutton_event():
-            print("radiobutton toggled, current value:", self.radio_var.get())
             # if radio_var is 0: connection_list = ip_list
             # if radio_var is larger than 0: connection_list = serial_list
             if self.radio_var.get() == 0:
+                self.ip_list = ["111111111", "22222222", "33333333"]
                 self.connection_list = self.ip_list
+                self.select_list_justify_dir = "right"
             else:
+                self.com_list = ["CCC", "CCCC", "CCCCC"]
                 self.connection_list = self.com_list
+                self.select_list_justify_dir = "left"
+
+            print(f"radiobutton toggled, current value:{self.radio_var.get()}, justify: {self.select_list_justify_dir}")
+            # Update the values and justify option of the combobox
+            self.combobox_ip.configure(values=self.connection_list, justify=self.select_list_justify_dir)
 
             # Update self.combobox_ip
             self.combobox_ip.configure(values=self.connection_list)
@@ -40,8 +49,8 @@ class UiSect2(ctk.CTkFrame):
         group_label_font = ctk.CTkFont(size=14, weight="bold")
 
         # 2) Create a Grid Layout that contains 2 rows and 1 column (1st title, 2nd --> 3 group frames for UUT).
-        self.grid_rowconfigure(0, weight=1)     # 2.0) Title (Unit Under Test)
-        self.grid_rowconfigure(1, weight=111)   # 2.1) 3 frames (Laser Brand radio buttons, Connection, and Details)
+        self.grid_rowconfigure(0, weight=1)  # 2.0) Title (Unit Under Test)
+        self.grid_rowconfigure(1, weight=111)  # 2.1) 3 frames (Laser Brand radio buttons, Connection, and Details)
 
         # 2.0) Create a label for top frame of section 2 header and place it in the 1st row of the grid layout
         self.lbl_uut = ctk.CTkLabel(self, text="Unit Under Test", font=ctk.CTkFont(size=16, weight="bold"))
@@ -51,7 +60,7 @@ class UiSect2(ctk.CTkFrame):
         # 2.1.0) Laser Brand radio buttons,
         # 2.1.1) Laser Controller Connection, and Details),
         # 2.1.2) Details and set grid layout to 1 row and 3 columns
-        self.frame_uut = ctk.CTkFrame(self)                     # 2.1)
+        self.frame_uut = ctk.CTkFrame(self)  # 2.1)
         # Place the frame in the 2nd row of the grid layout
         self.frame_uut.grid(row=1, column=0, padx=(5, 5), pady=(5, 5), sticky="nsew")
 
@@ -80,7 +89,7 @@ class UiSect2(ctk.CTkFrame):
         # Create and place the radio buttons in the radio button group frame
         self.radio_button_1 = ctk.CTkRadioButton(master=self.frame_radio_group, variable=self.radio_var,
                                                  value=0, text="Toptica 405", command=radiobutton_event)
-        self.radio_button_1.grid(row=1, column=0, pady=2, padx=20,  sticky="n")
+        self.radio_button_1.grid(row=1, column=0, pady=2, padx=20, sticky="n")
 
         self.radio_button_2 = ctk.CTkRadioButton(master=self.frame_radio_group, variable=self.radio_var,
                                                  value=1, text="Cobolt 457", command=radiobutton_event)
@@ -113,14 +122,11 @@ class UiSect2(ctk.CTkFrame):
         self.label_ip = ctk.CTkLabel(master=self.connection_group, text="IP Address:", font=bold_font)
         self.label_ip.grid(row=1, column=0, padx=[10, 0], pady=0, sticky="n")
 
-        # 2.1.1.1.1) Create and place the "IP Address" combobox widget in the "Laser Controller Connection" frame
+        # 2.1.1.1.1) Create and place the "IP Address/COM List" combobox widget in the Laser Controller Connection frame
         # if self.connection_list equals to self.ip_list then select_list_justify_dir = "right", else "left"
-        if self.connection_list == self.ip_list:
-            select_list_justify_dir = "right"
-        else:
-            select_list_justify_dir = "left"
 
-        self.combobox_ip = ctk.CTkComboBox(master=self.connection_group, width=140, justify=select_list_justify_dir, values=self.connection_list)
+        self.combobox_ip = ctk.CTkComboBox(master=self.connection_group, width=140,
+                                           justify=self.select_list_justify_dir, values=self.connection_list)
 
         self.combobox_ip.grid(row=1, column=1, padx=[5, 5], pady=0, sticky="ne")
 
@@ -183,4 +189,3 @@ class UiSect2(ctk.CTkFrame):
         # 2.1.2.2.3) Create and place the "Laser Emitter FW Ver" value (label widget) in the "Details" frame
         self.label_laser_fw_value = ctk.CTkLabel(master=self.details_group, text="1.0.0")
         self.label_laser_fw_value.grid(row=2, column=3, padx=10, pady=0, sticky="ne")
-
