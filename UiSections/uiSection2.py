@@ -24,11 +24,11 @@ class UiSect2(ctk.CTkFrame):
             # if radio_var is 0: connection_list = ip_list
             # if radio_var is larger than 0: connection_list = serial_list
             if self.radio_var.get() == 0:
-                self.ip_list = ["111111111", "22222222", "33333333"]
+                # self.ip_list = ["111111111", "22222222", "33333333"]
                 self.connection_list = self.ip_list
                 self.select_list_justify_dir = "right"
             else:
-                self.com_list = ["CCC", "CCCC", "CCCCC"]
+                # self.com_list = ["CCC", "CCCC", "CCCCC"]
                 self.connection_list = self.com_list
                 self.select_list_justify_dir = "left"
 
@@ -109,9 +109,6 @@ class UiSect2(ctk.CTkFrame):
         self.connection_group.grid_rowconfigure(0, weight=1)
         self.connection_group.grid_rowconfigure(1, weight=1)
         self.connection_group.grid_columnconfigure((0, 1, 2, 3), weight=1)
-        # self.connection_group.grid_columnconfigure(1, weight=1)
-        # self.connection_group.grid_columnconfigure(2, weight=1)
-        # self.connection_group.grid_columnconfigure(3, weight=1)
 
         # 2.1.1.0) Create a label for the "Laser Controller Connection" frame
         self.label_connection_group = ctk.CTkLabel(master=self.connection_group, text="Laser Controller Connection",

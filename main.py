@@ -19,6 +19,7 @@ root = ctk.CTk()
 root._windows_set_titlebar_icon
 # Set the title of the main window
 root.title("Laser Testing Utility - LTU")
+
 # Set icon of the main window
 root.iconbitmap("images/NVMI.ico")
 
@@ -38,10 +39,7 @@ frm.configure("960x800")
 frm.pack(padx=10, pady=10)
 
 # Create a Grid Layout that contains 4 rows and 1 column.
-frm.grid_rowconfigure(0, weight=1)
-frm.grid_rowconfigure(1, weight=1)
-frm.grid_rowconfigure(2, weight=1)
-frm.grid_rowconfigure(3, weight=1)
+frm.grid_rowconfigure((0,1,2,3), weight=1)
 frm.grid_columnconfigure(0, weight=1)
 
 # Create GUI section 1
