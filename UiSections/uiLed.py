@@ -9,88 +9,36 @@ class LED(ctk.CTkFrame):
         ctk.CTkFrame.__init__(self, master, **kwargs)
 
         self.ledON = ctk.CTkImage(light_image=Image.open("images/LedON1.png"),
-                                  dark_image=Image.open("images/LedON1.png"), size=(14, 14))
+                                  dark_image=Image.open("images/LedON1.png"), size=(19, 19))
         self.ledOFF = ctk.CTkImage(light_image=Image.open("images/LedOFF1.png"),
-                                   dark_image=Image.open("images/LedOFF1.png"), size=(14, 14))
+                                   dark_image=Image.open("images/LedOFF1.png"), size=(19, 19))
         self.led = self.ledOFF
-
-        self.button = ctk.CTkButton(self, image=self.led, text='', state='disabled', width=14, height=14)
+        self.state = False
+        # set the color to transparent so that the image will show through
+        self.configure(fg_color='transparent')
+        self.button = ctk.CTkButton(self, image=self.led, text='', state='disabled', width=19, height=19)
         self.button.configure(bg_color='transparent', fg_color='transparent')
-        self.button.pack()
+        # pack the button so that it will fill the frame while keeping the image centered
+        self.button.pack(expand=True, fill="both", padx=(0, 0), pady=(0, 0))
 
     def on(self):
         self.led = self.ledON
-        # self.configure(image=self.led)
+        self.state = True
+        # Refresh display for button
+        self.button.configure(image=self.led)
 
     def off(self):
         self.led = self.ledOFF
-        # self.configure(image=self.led)
+        self.state = False
+        # Refresh display for button
+        self.button.configure(image=self.led)
 
-    # def toggle(self):
-    #     if self.led == self.ledON:
-    #         self.led = self.ledOFF
-    #     else:
-    #         self.led = self.ledON
-    #     self.configure(image=self.led)
-    #
-    # def change_color(self, color):
-    #     self.color = color
-    #     self.led = self.ledOFF
-    #     self.configure(image=self.led)
-    #
-    # def change_radius(self, radius):
-    #     self.radius = radius
-    #     self.led = self.ledOFF
-    #     self.configure(image=self.led)
-    #
-    # def change_color_and_radius(self, color, radius):
-    #     self.color = color
-    #     self.radius = radius
-    #     self.led = self.ledOFF
-    #     self.configure(image=self.led)
-
-
-#
-# class LED(ctk.CTkFrame):
-#
-#
-#
-#         self.ledOFF = ctk.CTkImage(light_image=Image.open("images/LedOFF1.png"),
-#                                    dark_image=Image.open("images/LedOFF1.png"), size=(30, 30))
-#         self.ledON = ctk.CTkImage(light_image=Image.open("images/LedON1.png"),
-#                                   dark_image=Image.open("images/LedON1.png"), size=(30, 30))
-#         # self.ledON = tk.PhotoImage(file="ledON1.png")
-#         # self.ledOFF = tk.PhotoImage(file="ledOFF1.png")
-#         self.led = self.ledOFF
-
-    # def on(self):
-    #     self.led = self.ledON
-    #     self.configure(image=self.led)
-    #
-    # def off(self):
-    #     self.led = self.ledOFF
-    #     self.configure(image=self.led)
-    #
-    # def toggle(self):
-    #     if self.led == self.ledON:
-    #         self.led = self.ledOFF
-    #     else:
-    #         self.led = self.ledON
-    #     self.configure(image=self.led)
-    #
-    # def change_color(self, color):
-    #     self.color = color
-    #     self.led = self.ledOFF
-    #     self.configure(image=self.led)
-    #
-    # def change_radius(self, radius):
-    #     self.radius = radius
-    #     self.led = self.ledOFF
-    #     self.configure(image=self.led)
-    #
-    # def change_color_and_radius(self, color, radius):
-    #     self.color = color
-    #     self.radius = radius
-    #     self.led = self.ledOFF
-    #     self.configure(image=self.led)
-
+    def toggle(self):
+        if self.state:
+            self.led = self.ledOFF
+            self.state = False
+        else:
+            self.led = self.ledON
+            self.state = True
+        # Refresh display for button
+        self.button.configure(image=self.led)

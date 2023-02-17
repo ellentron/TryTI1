@@ -9,6 +9,9 @@ class UiConnection(ctk.CTkFrame):
     def __init__(self, master=None, **kwargs):
         ctk.CTkFrame.__init__(self, master, **kwargs)
 
+        def connect_clicked():
+            self.led.toggle()
+
         # Create fonts
         bold_font = ctk.CTkFont(size=12, weight="bold")
         group_label_font = ctk.CTkFont(size=14, weight="bold")
@@ -23,7 +26,7 @@ class UiConnection(ctk.CTkFrame):
         self.power_meter_frame.grid_columnconfigure(2, weight=1)
         self.power_meter_frame.grid_columnconfigure(3, weight=1)
         self.power_meter_frame.grid_rowconfigure(0, weight=1)
-        self.power_meter_frame.grid_rowconfigure(1, weight=1)
+        self.power_meter_frame.grid_rowconfigure(1, weight=1000)
 
         # Create Power Meter Connection heading label
         self.pm_connect_heading = ctk.CTkLabel(self.power_meter_frame, text="Power Meter Connection", font=group_label_font)
@@ -39,14 +42,15 @@ class UiConnection(ctk.CTkFrame):
                                                         values=self.connection_list)
         self.combobox_connection_list.grid(row=1, column=1, sticky="nw", padx=(10, 0), pady=(10, 10))
 
-        # Create Connect button
-        self.connect_button = ctk.CTkButton(self.power_meter_frame, text="Connect", width=10)
-        self.connect_button.grid(row=1, column=2, sticky="nw", padx=(10, 0), pady=(10, 10))
-
         # Create and place the "is_connected" Led
-        # self.led = LED(self.power_meter_frame, color="green", radius=10)
         self.led = LED(self.power_meter_frame)
-        self.led.grid(row=1, column=3, padx=[0, 0], pady=[0, 0], sticky="nsew")
+        # display the led while keeping it aligned and centered relative to the widget in the cell to its left
+        self.led.grid(row=1, column=3, sticky="ne", padx=(0, 0), pady=(10, 10))
+
+        # Create Connect button when clicked will connect to the power meter
+        self.connect_button = ctk.CTkButton(self.power_meter_frame, text="Connect", command=connect_clicked, width=10)
+        self.connect_button.grid(row=1, column=2, sticky="nw", padx=(5, 0), pady=(10, 10))
+
         self.led.on()
 
 
@@ -121,13 +125,6 @@ class UiRunControl(ctk.CTkFrame):
 
 """ ==================================================================================================== """
 
-
-
-
-
-
-
-
 class UiPowerMeter(ctk.CTkFrame):
     def __init__(self, master=None, **kwargs):
         ctk.CTkFrame.__init__(self, master, **kwargs)
@@ -150,9 +147,9 @@ class UiPowerMeter(ctk.CTkFrame):
 
         # Create UiConnection frame
         self.ui_pm_connect_frame = UiConnection(self)
-        self.ui_pm_connect_frame.grid(row=1, column=0, sticky="nsw", padx=(10, 10), pady=(0, 0))
+        self.ui_pm_connect_frame.grid(row=1, column=0, sticky="nsew", padx=(10, 10), pady=(10, 10))
 
         # Create UiRunControl instance and place it in the master frame
         self.ui_run_control_frame = UiRunControl(self)
-        self.ui_run_control_frame.grid(row=1, column=1, sticky="ne", padx=(10, 10), pady=(10, 10))
+        self.ui_run_control_frame.grid(row=1, column=1, sticky="nsew", padx=(10, 10), pady=(10, 10))
 
