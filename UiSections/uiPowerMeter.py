@@ -34,22 +34,22 @@ class UiConnection(ctk.CTkFrame):
 
         # Create COM port label
         self.com_port_label = ctk.CTkLabel(self.power_meter_frame, text="COM Port:", font=bold_font)
-        self.com_port_label.grid(row=1, column=0, sticky="nw", padx=(10, 0), pady=(10, 10))
+        self.com_port_label.grid(row=1, column=0, sticky="ew", padx=(10, 0), pady=(10, 10))
 
         # Create COM port combobox
         self.connection_list = ["COM5", "COM7", "COM15"]
         self.combobox_connection_list = ctk.CTkComboBox(master=self.power_meter_frame, width=140, justify="left",
                                                         values=self.connection_list)
-        self.combobox_connection_list.grid(row=1, column=1, sticky="nw", padx=(10, 0), pady=(10, 10))
+        self.combobox_connection_list.grid(row=1, column=1, sticky="ew", padx=(10, 0), pady=(10, 10))
 
         # Create and place the "is_connected" Led
         self.led = LED(self.power_meter_frame)
         # display the led while keeping it aligned and centered relative to the widget in the cell to its left
-        self.led.grid(row=1, column=3, sticky="ne", padx=(0, 0), pady=(10, 10))
+        self.led.grid(row=1, column=3, sticky="nsew", padx=(0, 0), pady=(10, 10))
 
         # Create Connect button when clicked will connect to the power meter
         self.connect_button = ctk.CTkButton(self.power_meter_frame, text="Connect", command=connect_clicked, width=10)
-        self.connect_button.grid(row=1, column=2, sticky="nw", padx=(5, 0), pady=(10, 10))
+        self.connect_button.grid(row=1, column=2, sticky="ew", padx=(5, 0), pady=(10, 10))
 
         self.led.on()
 
