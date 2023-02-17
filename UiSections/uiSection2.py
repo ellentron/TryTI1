@@ -28,23 +28,23 @@ class UiSect2(ctk.CTkFrame):
             # if radio_var is 0: connection_list = ip_list
             # if radio_var is larger than 0: connection_list = serial_list
             if self.radio_var.get() == 0:
-                # self.ip_list = ["111111111", "22222222", "33333333"]
                 self.connection_list = self.laser_ip_list
-                self.select_list_justify_dir = "right"
+                self.connect_to_label = "IP Address:"
             else:
-                # self.com_list = ["CCC", "CCCC", "CCCCC"]
                 self.connection_list = self.laser_com_list
-                self.select_list_justify_dir = "left"
+                self.connect_to_label = "COM Port:"
 
-            print(f"radiobutton toggled, current value:{self.radio_var.get()}, justify: {self.select_list_justify_dir}")
+            print(f"radiobutton toggled, current value:{self.radio_var.get()}")
             # Update the values and justify option of the combobox
             # self.combobox_ip.configure(values=self.connection_list, justify=self.select_list_justify_dir)
-            self.laser_connection.connection_list = self.connection_list
+            self.laser_connection.com_port_label.configure(text=self.connect_to_label)
 
-            # Update self.combobox_ip
+            # self.laser_connection.com_port_label.update_idletasks()
             self.laser_connection.connection_list = self.connection_list
+            self.laser_connection.combobox_connection_list.configure(values=self.connection_list)
             self.laser_connection.combobox_connection_list.set(self.connection_list[0])
             self.laser_connection.combobox_connection_list.update_idletasks()
+
 
         # self._border_width = 2
         # self._border_color = "white"

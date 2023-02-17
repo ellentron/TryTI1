@@ -28,18 +28,18 @@ class UiConnection(ctk.CTkFrame):
         self.power_meter_frame.pack(expand=True, fill="both", padx=(5, 5), pady=(5, 5))
 
         # Create grid layout for the frame - 2 rows, 4 column
-        self.power_meter_frame.grid_columnconfigure(0, weight=1)
-        self.power_meter_frame.grid_columnconfigure(1, weight=1)
-        self.power_meter_frame.grid_columnconfigure(2, weight=1)
-        self.power_meter_frame.grid_columnconfigure(3, weight=1)
-        self.power_meter_frame.grid_rowconfigure(0, weight=1)
-        self.power_meter_frame.grid_rowconfigure(1, weight=1)
+        self.power_meter_frame.grid_columnconfigure(index='all', weight=1)
+        # self.power_meter_frame.grid_columnconfigure(1, weight=1)
+        # self.power_meter_frame.grid_columnconfigure(2, weight=1)
+        # self.power_meter_frame.grid_columnconfigure(3, weight=1)
+        self.power_meter_frame.grid_rowconfigure(index='all', weight=1)
+        # self.power_meter_frame.grid_rowconfigure(1, weight=1)
 
         # Create Connection title label
         self.pm_connect_heading = ctk.CTkLabel(self.power_meter_frame, text=connection_title, font=group_label_font)
         self.pm_connect_heading.grid(row=0, column=0, columnspan=4, sticky="new", padx=(10, 0), pady=(5, 0))
 
-        # Create COM port label
+        # Create Connection port label
         self.com_port_label = ctk.CTkLabel(self.power_meter_frame, text=self.connect_to_label, font=bold_font)
         self.com_port_label.grid(row=1, column=0, sticky="ew", padx=(10, 0), pady=(0, 35))
 
