@@ -1,61 +1,96 @@
 import tkinter as tk
 from tkinter import ttk, font
 import customtkinter as ctk
+from PIL import Image
 
-
+# create LED class that uses ledON1.png and ledOFF1.png based on CTkFrame
 class LED(ctk.CTkFrame):
-    def __init__(self, parent, color="red", size=20, padding=4, **kwargs):
-        ctk.CTkFrame.__init__(self, parent, width=size+2*padding, height=size+2*padding, **kwargs)
+    def __init__(self, master=None, **kwargs):
+        ctk.CTkFrame.__init__(self, master, **kwargs)
 
-        self._color = color
-        self._size = size
-        self._padding = padding
-        self._value = False
+        self.ledON = ctk.CTkImage(light_image=Image.open("images/LedON1.png"),
+                                  dark_image=Image.open("images/LedON1.png"), size=(14, 14))
+        self.ledOFF = ctk.CTkImage(light_image=Image.open("images/LedOFF1.png"),
+                                   dark_image=Image.open("images/LedOFF1.png"), size=(14, 14))
+        self.led = self.ledOFF
 
-        self._circle = ctk.CTkCanvas(self, width=size+2*padding, height=size+2*padding)
-        self._circle.grid(row=0, column=0, sticky="nsew")
-
-        self._oval = self._circle.create_oval(padding, padding, size+padding, size+padding, fill="")
-        self._circle.pack(anchor="center", expand=True)
-
-        self.pack_propagate(False)
-
-
-# import tkinter as tk
-# from tkinter import ttk, font
-# import customtkinter as ctk
-#
-#
-# class LED(ctk.CTkFrame):
-#     def __init__(self, parent, color="red", size=20, **kwargs):
-#         ctk.CTkFrame.__init__(self, parent, width=size, height=size, **kwargs)
-#
-#         self._color = color
-#         self._size = size
-#         self._value = False
-#
-#         # # Create grid layout for the frame 1 row, 1 column
-#         # self.grid_rowconfigure(0, weight=1)
-#         # self.grid_columnconfigure(0, weight=1)
-#
-#         self._circle = ctk.CTkCanvas(self, width=size, height=size)
-#         self._circle.grid(row=0, column=0, sticky="nsew")
-#
-#         # Create ovel for the LED centered in the frame
-#         self._oval = self._circle.create_oval(0, 0, size, size, fill="")
-#         self._circle.pack(anchor="center", expand=True)
-#
-#
-#         # self._circle.pack(anchor="center", expand=True)
-#         # self._circle.pack()
-#         # self._oval = self._circle.create_oval(0, 0, size, size, fill=self._color)
-#         self.pack_propagate(False)
+        self.button = ctk.CTkButton(self, image=self.led, text='', state='disabled', width=14, height=14)
+        self.button.configure(bg_color='transparent', fg_color='transparent')
+        self.button.pack()
 
     def on(self):
-        self._value = True
-        self._circle.itemconfig(self._oval, fill=self._color)
+        self.led = self.ledON
+        # self.configure(image=self.led)
 
     def off(self):
-        self._value = False
-        self._circle.itemconfig(self._oval, fill="")
+        self.led = self.ledOFF
+        # self.configure(image=self.led)
+
+    # def toggle(self):
+    #     if self.led == self.ledON:
+    #         self.led = self.ledOFF
+    #     else:
+    #         self.led = self.ledON
+    #     self.configure(image=self.led)
+    #
+    # def change_color(self, color):
+    #     self.color = color
+    #     self.led = self.ledOFF
+    #     self.configure(image=self.led)
+    #
+    # def change_radius(self, radius):
+    #     self.radius = radius
+    #     self.led = self.ledOFF
+    #     self.configure(image=self.led)
+    #
+    # def change_color_and_radius(self, color, radius):
+    #     self.color = color
+    #     self.radius = radius
+    #     self.led = self.ledOFF
+    #     self.configure(image=self.led)
+
+
+#
+# class LED(ctk.CTkFrame):
+#
+#
+#
+#         self.ledOFF = ctk.CTkImage(light_image=Image.open("images/LedOFF1.png"),
+#                                    dark_image=Image.open("images/LedOFF1.png"), size=(30, 30))
+#         self.ledON = ctk.CTkImage(light_image=Image.open("images/LedON1.png"),
+#                                   dark_image=Image.open("images/LedON1.png"), size=(30, 30))
+#         # self.ledON = tk.PhotoImage(file="ledON1.png")
+#         # self.ledOFF = tk.PhotoImage(file="ledOFF1.png")
+#         self.led = self.ledOFF
+
+    # def on(self):
+    #     self.led = self.ledON
+    #     self.configure(image=self.led)
+    #
+    # def off(self):
+    #     self.led = self.ledOFF
+    #     self.configure(image=self.led)
+    #
+    # def toggle(self):
+    #     if self.led == self.ledON:
+    #         self.led = self.ledOFF
+    #     else:
+    #         self.led = self.ledON
+    #     self.configure(image=self.led)
+    #
+    # def change_color(self, color):
+    #     self.color = color
+    #     self.led = self.ledOFF
+    #     self.configure(image=self.led)
+    #
+    # def change_radius(self, radius):
+    #     self.radius = radius
+    #     self.led = self.ledOFF
+    #     self.configure(image=self.led)
+    #
+    # def change_color_and_radius(self, color, radius):
+    #     self.color = color
+    #     self.radius = radius
+    #     self.led = self.ledOFF
+    #     self.configure(image=self.led)
 

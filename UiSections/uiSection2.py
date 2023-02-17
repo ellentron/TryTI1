@@ -132,8 +132,9 @@ class UiSect2(ctk.CTkFrame):
         self.button_connect.grid(row=1, column=2, padx=[0, 5], pady=[0, 10], sticky="n")
 
         # 2.1.1.1.3) Create and place the "is_connected" Led in the "Laser Controller Connection" frame
-        led = LED(self.connection_group, size=16, color="green")
-        led.grid(row=1, column=3, padx=[0, 10], pady=[2, 8], sticky="n")
+        # led = LED(self.connection_group, color="green", radius=16)
+        led = LED(self.connection_group)
+        led.grid(row=1, column=3, padx=[0, 10], pady=[2, 8], sticky="nsew")
         led.on()
 
         # ===================== 2.1.1) Details=========================================================================
