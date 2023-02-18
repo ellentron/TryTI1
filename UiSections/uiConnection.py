@@ -15,7 +15,7 @@ class UiConnection(ctk.CTkFrame):
 
         self.connect_to_label = connect_to_label
 
-        # Tempory function for testing the LED
+        # Temporary function for testing the LED
         def connect_clicked():
             self.led.toggle()
 
@@ -28,12 +28,12 @@ class UiConnection(ctk.CTkFrame):
         self.power_meter_frame.pack(expand=True, fill="both", padx=(5, 5), pady=(5, 5))
 
         # Create grid layout for the frame - 2 rows, 4 column
-        self.power_meter_frame.grid_columnconfigure(index='all', weight=1)
-        # self.power_meter_frame.grid_columnconfigure(1, weight=1)
-        # self.power_meter_frame.grid_columnconfigure(2, weight=1)
-        # self.power_meter_frame.grid_columnconfigure(3, weight=1)
-        self.power_meter_frame.grid_rowconfigure(index='all', weight=1)
-        # self.power_meter_frame.grid_rowconfigure(1, weight=1)
+        self.power_meter_frame.grid_columnconfigure(index=0, weight=1)
+        self.power_meter_frame.grid_columnconfigure(index=1, weight=1)
+        self.power_meter_frame.grid_columnconfigure(index=2, weight=1)
+        self.power_meter_frame.grid_columnconfigure(index=3, weight=1)
+        self.power_meter_frame.grid_rowconfigure(index=0, weight=1)
+        self.power_meter_frame.grid_rowconfigure(index=1, weight=1)
 
         # Create Connection title label
         self.pm_connect_heading = ctk.CTkLabel(self.power_meter_frame, text=connection_title, font=group_label_font)
@@ -41,7 +41,7 @@ class UiConnection(ctk.CTkFrame):
 
         # Create Connection port label
         self.com_port_label = ctk.CTkLabel(self.power_meter_frame, text=self.connect_to_label, font=bold_font)
-        self.com_port_label.grid(row=1, column=0, sticky="ew", padx=(10, 0), pady=(0, 35))
+        self.com_port_label.grid(row=1, column=0, sticky="ew", padx=(10, 3), pady=(0, 35))
 
         # Create COM port combobox
         self.connection_list = connection_list

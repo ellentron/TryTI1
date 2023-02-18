@@ -113,41 +113,10 @@ class UiSect2(ctk.CTkFrame):
 
         # 2.1.1) Create UiConnection frame for "Laser Controller Connection"
         self.laser_connection = UiConnection(self.connection_group, connection_title="Laser Controller Connection",
-                                             connect_to_label="COM Port:", connection_list=self.connection_list)
+                                             connect_to_label="IP Address:", connection_list=self.connection_list)
         # self.laser_connection.grid(row=220, column=1, padx=(0, 0), pady=(0, 0), sticky="nsew")
         self.laser_connection.pack(side="top", fill="both", expand=True)
 
-        # # 2.1.1) Create grid layout for the "Laser Controller Connection" frame with 2 rows and 4 columns
-        # self.connection_group.grid_rowconfigure(index="all", weight=1)
-        # #self.connection_group.grid_rowconfigure(1, weight=1)
-        # self.connection_group.grid_columnconfigure(index="all", weight=1)
-        #
-        # # 2.1.1.0) Create a label for the "Laser Controller Connection" frame
-        # self.label_connection_group = ctk.CTkLabel(master=self.connection_group, text="Laser Controller Connection",
-        #                                            font=group_label_font)
-        # self.label_connection_group.grid(row=0, column=0, columnspan=4, padx=10, pady=0, sticky="n")
-        #
-        # # 2.1.1.1.0) Create and place the "IP Address" label and entry widget in the "Laser Controller Connection" frame
-        # self.label_ip = ctk.CTkLabel(master=self.connection_group, text="IP Address:", font=bold_font)
-        # self.label_ip.grid(row=1, column=0, padx=[10, 0], pady=0, sticky="n")
-        #
-        # # 2.1.1.1.1) Create and place the "IP Address/COM List" combobox widget in the Laser Controller Connection frame
-        # # if self.connection_list equals to self.ip_list then select_list_justify_dir = "right", else "left"
-        #
-        # self.combobox_ip = ctk.CTkComboBox(master=self.connection_group, width=140,
-        #                                    justify=self.select_list_justify_dir, values=self.connection_list)
-        #
-        # self.combobox_ip.grid(row=1, column=1, padx=[5, 5], pady=0, sticky="ne")
-        #
-        # # 2.1.1.1.2) Create and place the "Connect" button in the "Laser Controller Connection" frame
-        # self.button_connect = ctk.CTkButton(master=self.connection_group, text="Connect", width=90)
-        # self.button_connect.grid(row=1, column=2, padx=[0, 5], pady=[0, 10], sticky="n")
-        #
-        # # 2.1.1.1.3) Create and place the "is_connected" Led in the "Laser Controller Connection" frame
-        # # led = LED(self.connection_group, color="green", radius=16)
-        # led = LED(self.connection_group)
-        # led.grid(row=1, column=3, padx=[0, 10], pady=[2, 8], sticky="nsew")
-        # led.on()
 
         # ===================== 2.1.1) Details=========================================================================
         # 2.1.2) Create Frame container for "Details" widgets

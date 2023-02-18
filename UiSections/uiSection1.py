@@ -2,7 +2,7 @@ import customtkinter as ctk
 from PIL import Image, ImageTk
 
 class UiSect1(ctk.CTkFrame):
-    def __init__(self, master=None, sw_name="Software Name", sw_ver="Ver: 0.0.0", spec_ver="0.0.0", **kwargs):
+    def __init__(self, master=None, sw_name="Software Name", sw_ver="Ver: 0.0.0    |    ", spec_ver="0.0.0", **kwargs):
         ctk.CTkFrame.__init__(self, master, **kwargs)
 
         # Set frame to expand with master

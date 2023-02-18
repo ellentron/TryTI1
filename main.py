@@ -43,7 +43,7 @@ frm.grid_rowconfigure((0,1,2,3), weight=1)
 frm.grid_columnconfigure(0, weight=1)
 
 # Create GUI section 1
-sect1 = UiSect1(master=frm, sw_name="Laser Test Utility - LTU", sw_ver="Ver: 0.0.0", spec_ver="Spec: 0.0.0")
+sect1 = UiSect1(master=frm, sw_name="Laser Test Utility - LTU", sw_ver="Ver: 0.0.0     |     ", spec_ver="Spec: 0.0.0")
 sect1.grid(row=0, column=0, sticky="new", padx=10, pady=[10,5])
 
 # Create GUI section 2
