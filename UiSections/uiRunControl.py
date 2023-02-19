@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from UiSections.uiButtons import StartButton, StopButton
+from UiSections.uiButtons import StartButton, IconButton
 
 
 class UiRunControl(ctk.CTkFrame):
@@ -47,7 +47,12 @@ class UiRunControl(ctk.CTkFrame):
         self.start_button = StartButton(master=self.start_stop_frame, text="", state='normal')
         self.start_button.grid(row=0, column=0, sticky="nsew", padx=(0, 0), pady=(0, 0))
 
-        self.stop_button = StopButton(master=self.start_stop_frame, text="", state='normal',width=40, height=40)
+        self.stop_button = IconButton(master=self.start_stop_frame,
+                                      state='normal', width=40, height=40,
+                                      icon_file="images/StopCircle.png",
+                                      text="", bg_color=(255,0,255,255)
+                                      )
+
         self.stop_button.grid(row=0, column=1, sticky="nsew", padx=(0, 0), pady=(0, 0))
 
         self.time_info = "Time left: 10:00:00. Time elapsed: 14:00:00 of 24:00:00 hours"

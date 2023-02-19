@@ -2,24 +2,32 @@ import customtkinter as ctk
 from PIL import Image, ImageDraw
 
 
-class StopButton(ctk.CTkButton):
+class IconButton(ctk.CTkButton):
     """A class representing a Stop button with icon."""
-    def __init__(self, master=None, state='normal', width=42, icon_file=None, **kwargs):
+    def __init__(self,
+                 master=None,
+                 state='normal',
+                 width=42,
+                 icon_file=None,
+                 bg_color=None,
+                 **kwargs):
         ctk.CTkButton.__init__(self, master, state='normal', **kwargs)
         """ Constructor for the StopButton class.
         Args:
             master (str): The master container.
         """
-        self._width = width+20
+        self._width = width
 
         # Open icon image
-        # self.stop_icon_image = Image.open("images/PlayCircle.png")
-        self.stop_icon_image = Image.open("images/StopCircle.png")
+        self.icon_image = Image.open(icon_file)
+
         # scale the image to the desired size
-        self.stop_icon_image = self.stop_icon_image.resize((width, width), Image.ANTIALIAS)
+        self.icon_image = self.icon_image.resize((width, width), Image.ANTIALIAS)
 
         # Create image with solid color as background
         background = Image.new("RGBA", (width, width), (255, 255, 255, 0))
+        # background = Image.new("RGBA", (width, width), bg_color)
+
         # scale the image to the desired size
         background = background.resize((width, width), Image.ANTIALIAS)
 
@@ -30,16 +38,17 @@ class StopButton(ctk.CTkButton):
         # circle = circle.resize((width, width), Image.ANTIALIAS)
 
         draw = ImageDraw.Draw(circle)
-        draw.ellipse((0, 0, width-1, width-1), fill=(255, 0, 0, 255))
+        # draw.ellipse((0, 0, width-1, width-1), fill=(0, 255, 0, 255))
+        draw.ellipse((0, 0, width-1, width-1), fill=bg_color)
 
         # Overlay the circle on top of background using the alpha_composite() method
         result = Image.alpha_composite(background, circle)
 
         # Crop the icon image to the same size as the circle image
-        self.stop_icon_image = self.stop_icon_image.crop((0, 0, width, width))
+        self.icon_image = self.icon_image.crop((0, 0, width, width))
 
         # Overlay the result image with the resized stop icon image
-        final_result = Image.alpha_composite(result, self.stop_icon_image)
+        final_result = Image.alpha_composite(result, self.icon_image)
 
         self._my_state = state
         # self._width = width
@@ -48,10 +57,6 @@ class StopButton(ctk.CTkButton):
 
         self._value = True
         self.configure(image=self._icon, fg_color='transparent', hover_color='lightgray', state=self._my_state, width=width+20, height=width+20)
-
-
-
-
 
 # A class representing a Stop button with icon
 # class StopButton(ctk.CTkButton):
