@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from UiSections.uiButtons import StartButton
+# from UiSections.uiButtons import StartButton
 from UiSections.uiIconButton import IconButton
 
 
@@ -27,7 +27,8 @@ class UiRunControl(ctk.CTkFrame):
         self.run_control_frame.grid_rowconfigure(2, weight=1)
 
         # Create label "Measurement Time [hours]:"
-        self.measurement_time_label = ctk.CTkLabel(self.run_control_frame, text="Measurement Time [Hours]:", font=bold_font)
+        self.measurement_time_label = ctk.CTkLabel(self.run_control_frame, text="Measurement Time [Hours]:",
+                                                   font=bold_font)
         self.measurement_time_label.grid(row=0, column=0, sticky="nsew", padx=(10, 0), pady=(10, 10))
 
         # Create entry for measurement time. Default text = "24"
@@ -44,13 +45,21 @@ class UiRunControl(ctk.CTkFrame):
         self.start_stop_frame.grid_columnconfigure(index=0, weight=1)
         self.start_stop_frame.grid_columnconfigure(index=1, weight=1)
 
-
-        # Create Start button
         def on_start_button_click(event):
-            # Your event handling code here
-            print("Start button was clicked!")
-            self.start_button.configure(state='disabled')
-            self.stop_button.configure(state='normal')
+            if self.start_button.state == 'normal':
+                print("Start button was clicked!")
+                self.start_button.configure(state='disabled')
+                self.stop_button.configure(state='normal')
+                self.stop_button.update_button()
+                self.start_button.update_button()
+
+        def on_stop_button_click(event):
+            if self.stop_button.state == 'normal':
+                print("Stop button was clicked!")
+                self.stop_button.configure(state='disabled')
+                self.start_button.configure(state='normal')
+                self.start_button.update_button()
+                self.stop_button.update_button()
 
         # self.start_button = StartButton(master=self.start_stop_frame, text="", state='normal')
         self.start_button = IconButton(master=self.start_stop_frame,
@@ -61,14 +70,14 @@ class UiRunControl(ctk.CTkFrame):
         self.start_button.bind("<Button-1>", on_start_button_click)
         self.start_button.grid(row=0, column=0, sticky="nsew", padx=(0, 0), pady=(0, 0))
 
-
-
         # Create Stop button
         self.stop_button = IconButton(master=self.start_stop_frame,
                                       state='disabled', width=40, height=40,
                                       icon_file="images/StopCircle.png",
-                                      text="", bg_color=(255,0,255,255)
+                                      # text="", bg_color=(255,0,255,255)
+                                      text="", bg_color='#3A7EBF'
                                       )
+        self.stop_button.bind("<Button-1>", on_stop_button_click)
         self.stop_button.grid(row=0, column=1, sticky="nsew", padx=(0, 0), pady=(0, 0))
 
         self.time_info = "Time left: 10:00:00. Time elapsed: 14:00:00 of 24:00:00 hours"
