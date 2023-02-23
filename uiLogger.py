@@ -1,4 +1,5 @@
 import logging
+import time
 import tkinter as tk
 import customtkinter as ctk
 
@@ -18,8 +19,12 @@ class LogHandler(logging.Handler):
         super().__init__()
         self.log_widget = log_widget
     def emit(self, record):
+        timestamp = time.strftime('%m/%d/%Y %I:%M:%S %p', time.localtime(record.created))
         message = self.format(record)
-        self.log_widget.insert("end", message + "\n")
+
+        self.log_widget.configure(font=ctk.CTkFont(size=14, weight="normal"), text_color="green") # configure font first
+        self.log_widget.insert("end", f"{timestamp}: {message}\n")
+
 
 class UiLog(ctk.CTkFrame):
     def __init__(self, master=None, **kwargs):

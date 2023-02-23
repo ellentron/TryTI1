@@ -62,7 +62,7 @@ logger = ui_logger.logger
 sect4 = uiLogger.UiLog(master=frm)
 sect4.grid(row=3, column=0, sticky="nsew", padx=10, pady=10)
 
-logger.debug("Debug message")
+logger.debug("Debug message", extra={"color": "red"})
 logger.info("Info message")
 logger.warning("Warning message")
 logger.error("Error message")
